@@ -25,7 +25,7 @@ class DBConnection{
     public static Connection connectToDB() {
         try {
             Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/my_db", "postgres", "Var@d28");
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/my_db", "postgres", "password");
         } catch (Exception e){
             System.out.println("Error connecting to DB: "+e.getMessage());
             return null;
@@ -679,3 +679,4 @@ public class LayoutAppMain {
 
     }
 }
+
