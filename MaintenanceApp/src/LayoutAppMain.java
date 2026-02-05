@@ -21,15 +21,24 @@ class InputHelper {
     public static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 }
 
-class DBConnection{
+class DBConnection {
+    private static Connection connection;
+    private DBConnection() {}
+
     public static Connection connectToDB() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/my_db", "postgres", "password");
-        } catch (Exception e){
-            System.out.println("Error connecting to DB: "+e.getMessage());
-            return null;
+        if (connection == null) {
+            try {
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(
+                        "jdbc:postgresql://localhost:5432/my_db",
+                        "postgres",
+                        "password"
+                );
+            } catch (ClassNotFoundException | SQLException e) {
+                throw new RuntimeException("Error connecting to DB: ", e);
+            }
         }
+        return connection;
     }
 }
 
@@ -679,4 +688,5 @@ public class LayoutAppMain {
 
     }
 }
+
 
