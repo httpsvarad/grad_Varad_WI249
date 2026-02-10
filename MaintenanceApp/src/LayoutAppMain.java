@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
@@ -117,8 +116,7 @@ class Site {
     }
 
     public String toString() {
-        return String.format("Site ID: %d | Type: %s | Dimensions: %dx%d ft | Area: %d sqft | Occupied: %s | Owner ID: %d",
-                siteId, type, length, width, area, (occupied ? "Yes" : "No"), ownerId);
+        return "Site ID: " + siteId + " | Type: " + type + " | Dimensions: " + length + "x" + width + " ft | Area: " + area + " sqft | Occupied: " + (occupied ? "Yes" : "No") + " | Owner ID: " + ownerId;
     }
 }
 
@@ -144,6 +142,8 @@ interface AdminDAO{
     void generateMaintenance();
     void viewPaymentRecords();
     void approveRejectRequest();
+    void editSite();
+    void removeSite();
 }
 
 interface OwnerDAO{
@@ -342,6 +342,164 @@ class OwnerOperations implements OwnerDAO {
 }
 
 class AdminDBOperations implements AdminDAO{
+
+    public void editSite() {
+        try {
+            System.out.println("\n=== ALL SITES ===");
+            List<Site> allSites = getAllSites();
+            
+            if (allSites.isEmpty()) {
+                System.out.println("No sites available.");
+                return;
+            }
+            
+            for (Site site : allSites) {
+                System.out.println(site);
+            }
+            
+            System.out.print("\nEnter Site ID to Edit: ");
+            int siteId = Integer.parseInt(InputHelper.br.readLine());
+            
+            Site selectedSite = null;
+            for (Site s : allSites) {
+                if (s.siteId == siteId) {
+                    selectedSite = s;
+                    break;
+                }
+            }
+            
+            if (selectedSite == null) {
+                System.out.println("Invalid Site ID!");
+                return;
+            }
+            
+            System.out.println("\nWhat would you like to edit?");
+            System.out.println("1. Length and Width");
+            System.out.println("2. Site Type");
+            System.out.println("3. Occupation Status");
+            System.out.println("4. Owner ID");
+            System.out.print("Choice: ");
+            int choice = Integer.parseInt(InputHelper.br.readLine());
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter New Length (ft): ");
+                    int newLength = Integer.parseInt(InputHelper.br.readLine());
+                    System.out.print("Enter New Width (ft): ");
+                    int newWidth = Integer.parseInt(InputHelper.br.readLine());
+                    int newArea = newLength * newWidth;
+                    
+                    PreparedStatement ps1 = DBConnection.connectToDB().prepareStatement(
+                        "UPDATE sites SET length_ft = ?, width_ft = ?, sqft = ? WHERE site_id = ?"
+                    );
+                    ps1.setInt(1, newLength);
+                    ps1.setInt(2, newWidth);
+                    ps1.setInt(3, newArea);
+                    ps1.setInt(4, siteId);
+                    ps1.executeUpdate();
+                    System.out.println("Dimensions updated successfully!");
+                    break;
+                    
+                case 2:
+                    System.out.println("Select New Site Type:");
+                    for (int i = 0; i < SiteType.values().length; i++) {
+                        System.out.println((i + 1) + ". " + SiteType.values()[i]);
+                    }
+                    System.out.print("Choice: ");
+                    int typeChoice = Integer.parseInt(InputHelper.br.readLine());
+                    SiteType newType = SiteType.values()[typeChoice - 1];
+                    
+                    PreparedStatement ps2 = DBConnection.connectToDB().prepareStatement(
+                        "UPDATE sites SET site_type = ? WHERE site_id = ?"
+                    );
+                    ps2.setString(1, newType.toString());
+                    ps2.setInt(2, siteId);
+                    ps2.executeUpdate();
+                    System.out.println("Site type updated successfully!");
+                    break;
+                    
+                case 3:
+                    System.out.print("Set Occupied (true/false): ");
+                    boolean newOccupied = Boolean.parseBoolean(InputHelper.br.readLine());
+                    
+                    PreparedStatement ps3 = DBConnection.connectToDB().prepareStatement(
+                        "UPDATE sites SET is_occupied = ? WHERE site_id = ?"
+                    );
+                    ps3.setBoolean(1, newOccupied);
+                    ps3.setInt(2, siteId);
+                    ps3.executeUpdate();
+                    System.out.println("Occupation status updated successfully!");
+                    break;
+                    
+                case 4:
+                    System.out.println("Existing Owners:");
+                    getOwners();
+                    System.out.print("Enter New Owner ID (0 for no owner): ");
+                    int newOwnerId = Integer.parseInt(InputHelper.br.readLine());
+                    
+                    PreparedStatement ps4 = DBConnection.connectToDB().prepareStatement(
+                        "UPDATE sites SET owner_id = ? WHERE site_id = ?"
+                    );
+                    if (newOwnerId > 0) {
+                        ps4.setInt(1, newOwnerId);
+                    } else {
+                        ps4.setNull(1, Types.INTEGER);
+                    }
+                    ps4.setInt(2, siteId);
+                    ps4.executeUpdate();
+                    System.out.println("Owner updated successfully!");
+                    break;
+                    
+                default:
+                    System.out.println("Invalid choice!");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void removeSite() {
+        try {
+            System.out.println("\n=== ALL SITES ===");
+            List<Site> allSites = getAllSites();
+            
+            if (allSites.isEmpty()) {
+                System.out.println("No sites available.");
+                return;
+            }
+            
+            for (Site site : allSites) {
+                System.out.println(site);
+            }
+            
+            System.out.print("\nEnter Site ID to Remove: ");
+            int siteId = Integer.parseInt(InputHelper.br.readLine());
+            
+            System.out.print("Are you sure you want to delete Site ID " + siteId + "? (Y/N): ");
+            String confirm = InputHelper.br.readLine();
+            
+            if (!confirm.equalsIgnoreCase("Y")) {
+                System.out.println("Deletion cancelled.");
+                return;
+            }
+            
+            PreparedStatement ps = DBConnection.connectToDB().prepareStatement(
+                "DELETE FROM sites WHERE site_id = ?"
+            );
+            ps.setInt(1, siteId);
+            int rowsAffected = ps.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                System.out.println("Site deleted successfully!");
+            } else {
+                System.out.println("Site ID not found!");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
     public void approveRejectRequest() {
         try {
@@ -560,10 +718,12 @@ class MenuController {
             while (true) {
                 System.out.println("\n--- ADMIN MENU ---");
                 System.out.println("1. Add Site");
-                System.out.println("2. View Payment Records");
-                System.out.println("3. Generate Maintenance");
-                System.out.println("4. Approve/Reject Requests");
-                System.out.println("5. Logout");
+                System.out.println("2. Edit Site");
+                System.out.println("3. Remove Site");
+                System.out.println("4. View Payment Records");
+                System.out.println("5. Generate Maintenance");
+                System.out.println("6. Approve/Reject Requests");
+                System.out.println("7. Logout");
 
                 System.out.print("Enter choice: ");
                 int choice = Integer.parseInt(InputHelper.br.readLine());
@@ -573,15 +733,21 @@ class MenuController {
                         addSiteMenu(adminOps);
                         break;
                     case 2:
-                        adminOps.viewPaymentRecords();
+                        adminOps.editSite();
                         break;
                     case 3:
-                        adminOps.generateMaintenance();
+                        adminOps.removeSite();
                         break;
                     case 4:
-                        adminOps.approveRejectRequest();
+                        adminOps.viewPaymentRecords();
                         break;
                     case 5:
+                        adminOps.generateMaintenance();
+                        break;
+                    case 6:
+                        adminOps.approveRejectRequest();
+                        break;
+                    case 7:
                         return;
                     default:
                         System.out.println("Invalid choice! Try again.");
@@ -663,29 +829,41 @@ class MenuController {
     }
 }
 
-
 public class LayoutAppMain {
     public static void main(String[] args) {
         String email;
         String password;
+        User user = null;
 
-        try {
-            System.out.println("=====Layout Maintenance Portal=====");
-            System.out.print("Enter Email : ");
-            email = InputHelper.br.readLine();
-            System.out.print("Enter Password : ");
-            password=InputHelper.br.readLine();
+        do {
+            try {
+                System.out.println("=====Layout Maintenance Portal=====");
+                System.out.print("Enter Email : ");
+                email = InputHelper.br.readLine();
+                System.out.print("Enter Password : ");
+                password = InputHelper.br.readLine();
 
-            User user = AuthService.login(email, password);
+                user = AuthService.login(email, password);
 
-            if(user!=null){
-                System.out.println("Login Successful! Hi, " + user.name);
-                MenuController.showMenu(user);
-            } else System.out.println("INVALID CREDENTIALS");
+                if (user != null) {
+                    System.out.println("Login Successful! Hi, " + user.name);
+                    MenuController.showMenu(user);
+                    break;
+                } else {
+                    System.out.println("INVALID CREDENTIALS");
+                    System.out.print("Do you want to try again? (Y/N): ");
+                    String retry = InputHelper.br.readLine();
+                    if (!retry.equalsIgnoreCase("Y")) {
+                        System.out.println("Exiting...");
+                        break;
+                    }
+                }
 
-        } catch (Exception e){
-            System.out.println("Something went wrong: "+e.getMessage());
-        }
+            } catch (Exception e) {
+                System.out.println("Something went wrong: " + e.getMessage());
+            }
+
+        } while (user == null);
 
     }
 }
