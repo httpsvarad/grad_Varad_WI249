@@ -64,19 +64,13 @@ public class EmpMain {
         InsertHandler.addEmployees(employees);
 
         // 1. Highest salary paid employee
-        Employee highestPaid = employees.stream()
-                .max(Comparator.comparingInt(e -> e.salary))
-                .orElse(null);
+        Employee highestPaid = employees.stream().max(Comparator.comparingInt(e -> e.salary));
         System.out.println("Highest Paid Employee:");
         System.out.println(highestPaid);
 
         // 2. Count based on gender
         System.out.println("\nGender Count:");
-        Map<Boolean, Long> genderCount = employees.stream()
-                .collect(Collectors.partitioningBy(
-                        e -> e.gender.equalsIgnoreCase("Male"),
-                        Collectors.counting()
-                ));
+        Map<Boolean, Long> genderCount = employees.stream().collect(Collectors.partitioningBy(e -> e.gender.equalsIgnoreCase("Male"), Collectors.counting()));
 
 //        System.out.println(genderCount);
         System.out.println("Male: "+genderCount.get(true));
@@ -84,31 +78,21 @@ public class EmpMain {
 
 
         // 3. Total expense department wise
-        Map<String, Integer> deptExpense = employees.stream()
-                .collect(Collectors.groupingBy(e -> e.dept,
-                        Collectors.summingInt(e -> e.salary)));
+        Map<String, Integer> deptExpense = employees.stream().collect(Collectors.groupingBy(e -> e.dept, Collectors.summingInt(e -> e.salary)));
         System.out.println("\nDepartment Wise Expense:");
         System.out.println(deptExpense);
 
-        // 4. Top 5 senior employees (by age)
+        // 4. Top 5 senior employees
         System.out.println("\nTop 5 Senior Employees:");
-        employees.stream()
-                .sorted(Comparator.comparingInt((Employee e) -> e.age).reversed())
-                .limit(5)
-                .forEach(System.out::println);
+        employees.stream().sorted(Comparator.comparingInt((Employee e) -> e.age).reversed()).limit(5).forEach(System.out::println);
 
         // 5. Names of all managers
         System.out.println("\nManagers:");
-        employees.stream()
-                .filter(p)
-                .map(e -> e.name)
-                .forEach(System.out::println);
+        employees.stream().filter(p).map(e -> e.name).forEach(System.out::println);
 
         // 6. Hike salary by 20% except managers
-        System.out.println("\nSalary After Hike (Except Managers):");
-        employees.stream()
-                .filter(p.negate())
-                .forEach(e -> {
+        System.out.println("\nSalary After Hike:");
+        employees.stream().filter(p.negate()).forEach(e -> {
                     e.salary = e.salary + (e.salary * 20 / 100);
                     System.out.println(e);
                 });
