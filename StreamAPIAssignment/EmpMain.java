@@ -76,7 +76,6 @@ public class EmpMain {
         System.out.println("Male: "+genderCount.get(true));
         System.out.println("Female: "+genderCount.get(false));
 
-
         // 3. Total expense department wise
         Map<String, Integer> deptExpense = employees.stream().collect(Collectors.groupingBy(e -> e.dept, Collectors.summingInt(e -> e.salary)));
         System.out.println("\nDepartment Wise Expense:");
