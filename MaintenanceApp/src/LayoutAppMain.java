@@ -796,9 +796,6 @@ class MenuController {
 
         System.out.println("\n--- ADD SITE ---");
 
-        System.out.println("Existing Owners:");
-        adminOps.getOwners();
-
         System.out.print("Enter Length (ft): ");
         int length = Integer.parseInt(br.readLine());
 
@@ -813,7 +810,11 @@ class MenuController {
         int typeChoice = Integer.parseInt(br.readLine());
         SiteType type = SiteType.values()[typeChoice - 1];
 
-        System.out.print("Enter Owner ID OR 0 for no owner): ");
+        System.out.print("Enter Owner ID to assign site OR 0 for no owner): ");
+
+        System.out.println("\nExisting Owners:");
+        adminOps.getOwners();
+
         int ownerId = Integer.parseInt(br.readLine());
 
         int area = length*width;
