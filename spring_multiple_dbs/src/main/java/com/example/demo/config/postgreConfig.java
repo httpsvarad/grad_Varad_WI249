@@ -34,7 +34,7 @@ public class postgreConfig {
 	}
 
 	@Bean(name = "psqlEntityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean bookEntityManagerFactory(EntityManagerFactoryBuilder builder,
+	public LocalContainerEntityManagerFactoryBean psqlEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("psqlDataSource") DataSource dataSource) {
 		
 		HashMap<String, Object> properties = new HashMap<>();
@@ -48,7 +48,7 @@ public class postgreConfig {
 	}
 
 	@Bean(name = "psqlTransactionManager")
-	public PlatformTransactionManager bookTransactionManager(@Qualifier("psqlEntityManagerFactory") EntityManagerFactory bookEntityManagerFactory) {
-		return new JpaTransactionManager(bookEntityManagerFactory);
+	public PlatformTransactionManager psqlTransactionManager(@Qualifier("psqlEntityManagerFactory") EntityManagerFactory psqlEntityManagerFactory) {
+		return new JpaTransactionManager(psqlEntityManagerFactory);
 	}
 }

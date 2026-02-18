@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
 <head>
     <title>Student App</title>
 </head>
+
 <body style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px;">
 
     <h2 style="color: #333;">Student Details</h2>
@@ -14,7 +16,7 @@
         <label for="name" style="display: block; margin-bottom: 8px;">Name:</label>
         <input required type="text" id="name" name="name" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
 
-        <label for="std" style="display: block; margin-bottom: 8px;">Standard:</label>
+        <label for="standard" style="display: block; margin-bottom: 8px;">Standard:</label>
         <input required type="number" id="std" name="std" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
 
         <label for="school" style="display: block; margin-bottom: 8px;">School:</label>
@@ -23,6 +25,9 @@
         <input type="submit" value="SUBMIT" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;" />
 		<input type="reset" value="RESET" style="padding: 8px 16px; margin-left: 2px; background-color: rgb(192, 192, 192); color: rgb(0, 0, 0); border: none; border-radius: 4px; cursor: pointer;" />
     </form>
+	
+	<p th:if="${success}" th:text="${success}" style="color:green;"></p>
+	<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 
 </body>
 </html>
