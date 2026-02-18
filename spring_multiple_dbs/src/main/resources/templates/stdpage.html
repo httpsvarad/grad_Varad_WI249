@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student App</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px;">
+
+    <h2 style="color: #333;">Student Details</h2>
+
+    <form action="/save" method="POST" style="background-color: #fff; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 2px 2px 8px #aaa;">
+        <label for="eid" style="display: block; margin-bottom: 8px;">Roll ID:</label>
+        <input required type="text" id="roll_id" name="roll_id" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
+
+        <label for="name" style="display: block; margin-bottom: 8px;">Name:</label>
+        <input required type="text" id="name" name="name" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
+
+        <label for="sal" style="display: block; margin-bottom: 8px;">Standard:</label>
+        <input required type="number" id="std" name="std" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
+
+        <label for="desig" style="display: block; margin-bottom: 8px;">School:</label>
+        <input required type="text" id="school" name="school" style="width: 90%; padding: 6px; margin-bottom: 12px;" />
+
+        <input type="submit" value="SUBMIT" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;" />
+		<input type="reset" value="RESET" style="padding: 8px 16px; margin-left: 2px; background-color: rgb(192, 192, 192); color: rgb(0, 0, 0); border: none; border-radius: 4px; cursor: pointer;" />
+    </form>
+
+</body>
+</html>
