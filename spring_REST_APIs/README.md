@@ -21,26 +21,26 @@ INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage
 # 🔹 API Endpoints (Example Queries & Bodies)
 
 
-## 1️⃣ Get All Students
+## 1️⃣ Get All Students (GET)
 
 ```
-GET http://localhost:8080/students
-```
-
----
-
-## 2️⃣ Get Student By ID
-
-```
-GET http://localhost:8080/students/1
+http://localhost:8080/students
 ```
 
 ---
 
-## 3️⃣ Create Student
+## 2️⃣ Get Student By ID (GET)
 
 ```
-POST http://localhost:8080/students
+http://localhost:8080/students/1
+```
+
+---
+
+## 3️⃣ Create Student (POST)
+
+```
+http://localhost:8080/students
 ```
 
 ### Body (JSON)
@@ -62,7 +62,7 @@ POST http://localhost:8080/students
 ## 4️⃣ Update Student (PUT)
 
 ```
-PUT http://localhost:8080/students/11
+http://localhost:8080/students/11
 ```
 
 ### Body
@@ -83,7 +83,7 @@ PUT http://localhost:8080/students/11
 ## 5️⃣ Partial Update (PATCH)
 
 ```
-PATCH http://localhost:8080/students/11
+http://localhost:8080/students/11
 ```
 
 ### Body
@@ -96,57 +96,57 @@ PATCH http://localhost:8080/students/11
 
 ---
 
-## 6️⃣ Delete Student
+## 6️⃣ Delete Student (DELETE)
 
 ```
-DELETE http://localhost:8080/students/11
-```
-
----
-
-## 7️⃣ Get Students By School
-
-```
-GET http://localhost:8080/students/school?name=Sunrise High
+http://localhost:8080/students/11
 ```
 
 ---
 
-## 8️⃣ Get Count By School
+## 7️⃣ Get Students By School (GET)
 
 ```
-GET http://localhost:8080/students/school/count?name=Sunrise High
-```
-
----
-
-## 9️⃣ Get Count By Standard
-
-```
-GET http://localhost:8080/students/school/standard/count?standard=10
+http://localhost:8080/students/school?name=Sunrise High
 ```
 
 ---
 
-## 🔟 Get Strength (Gender + Standard)
+## 8️⃣ Get Count By School (GET)
 
 ```
-GET http://localhost:8080/students/strength?gender=MALE&standard=10
+http://localhost:8080/students/school/count?name=Sunrise High
 ```
 
 ---
 
-## Get Result (Pass / Fail)
+## 9️⃣ Get Count By Standard (GET)
+
+```
+http://localhost:8080/students/school/standard/count?standard=10
+```
+
+---
+
+## 🔟 Get Strength (GET)
+
+```
+http://localhost:8080/students/strength?gender=MALE&standard=10
+```
+
+---
+
+## Get Result (GET)
 
 ### ✅ Passed Students (≥ 40%)
 
 ```
-GET http://localhost:8080/students/result?pass=true
+http://localhost:8080/students/result?pass=true
 ```
 
 ### ❌ Failed Students (< 40%)
 
 ```
-GET http://localhost:8080/students/result?pass=false
+http://localhost:8080/students/result?pass=false
 ```
 
