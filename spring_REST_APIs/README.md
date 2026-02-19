@@ -1,20 +1,10 @@
 ```markdown
-# 📘 Student REST APIs - README
 
-**Base URL:**  
+# Student REST APIs - README
+
+## 🔹 Sample PostgreSQL Data
+
 ```
-
-[http://localhost:8080](http://localhost:8080)
-
-````
-
-**Port:** `8080`
-
----
-
-# 🔹 Sample PostgreSQL Data
-
-```sql
 INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage) VALUES
 (1, 101, 'Alice Johnson', 10, 'Sunrise High', 'FEMALE', 92.5),
 (2, 102, 'Bob Smith', 10, 'Sunrise High', 'MALE', 88.0),
@@ -26,7 +16,7 @@ INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage
 (8, 108, 'Hannah Lee', 11, 'Sunrise High', 'FEMALE', 35.0),
 (9, 109, 'Ian Somerhalder', 12, 'Everest Academy', 'MALE', 90.5),
 (10, 110, 'Julia Roberts', 9, 'Greenwood School', 'FEMALE', 87.0);
-````
+```
 
 ---
 
@@ -56,7 +46,7 @@ GET http://localhost:8080/students/1
 POST http://localhost:8080/students
 ```
 
-### Body (raw → JSON)
+### Body (JSON)
 
 ```json
 {
@@ -165,5 +155,4 @@ GET http://localhost:8080/students/result?pass=false
 
 ---
 
-```
 ```
