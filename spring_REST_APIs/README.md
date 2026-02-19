@@ -29,7 +29,7 @@ http://localhost:8080/students
 
 ---
 
-## 2️⃣ Get Student By ID (GET)
+## 2️⃣ Get Student By RegNo (GET)
 
 ```
 http://localhost:8080/students/1
@@ -68,7 +68,8 @@ http://localhost:8080/students/11
 ### Body
 
 ```json
-{
+{ 
+  "reg_no": 11,
   "roll_no": 120,
   "name": "Sia Mehta",
   "standard": 11,
