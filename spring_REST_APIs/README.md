@@ -1,8 +1,6 @@
-```markdown
-
 # 📘 Student REST APIs - README
 
-# 🔹 Sample PostgreSQL Data
+## 🔹 Sample PostgreSQL Data
 
 ```sql
 INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage) VALUES
@@ -153,7 +151,3 @@ GET http://localhost:8080/students/result?pass=true
 GET http://localhost:8080/students/result?pass=false
 ```
 
----
-
-```
-```
