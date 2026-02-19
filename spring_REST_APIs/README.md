@@ -1,4 +1,4 @@
-# 📘 Student REST APIs - README
+# Student REST APIs - README
 
 ## 🔹 Sample PostgreSQL Data
 
@@ -20,7 +20,6 @@ INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage
 
 # 🔹 API Endpoints (Example Queries & Bodies)
 
----
 
 ## 1️⃣ Get All Students
 
