@@ -125,5 +125,3 @@ DriverManager.getConnection(
 javac LayoutAppMain.java
 java LayoutAppMain
 ```
-
-Let me know what you’d like next.
