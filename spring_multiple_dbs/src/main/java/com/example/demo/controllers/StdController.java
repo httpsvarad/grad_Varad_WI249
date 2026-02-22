@@ -42,7 +42,7 @@ public class StdController {
             redirectAttributes.addFlashAttribute("success", "Student Saved Successfully to Both DBs!");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("error", "Error Saving Student!");
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
 
         return "redirect:/";   

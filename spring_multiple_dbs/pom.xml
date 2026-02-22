@@ -26,6 +26,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- httpsvarad Web Response -->
+        <dependency>
+		    <groupId>io.github.httpsvarad</groupId>
+		    <artifactId>spring-web-exception-response</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
         
         <!-- JTA Narayana -->
         <!-- <dependency>
