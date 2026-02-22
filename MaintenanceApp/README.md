@@ -4,7 +4,7 @@ A role-based **Java console application** for managing residential layout sites,
 
 ---
 
-## 📖 Overview
+## Overview
 
 The Layout Maintenance Management System is designed to streamline the administration of residential layout properties. The system supports two user roles:
 
@@ -15,16 +15,16 @@ The application follows **OOP principles** and implements the **DAO (Data Access
 
 ---
 
-## 🚀 Features
+## Features
 
-### 🔐 Authentication
+### Authentication
 
 * Secure login system
 * Role-based access control (ADMIN / OWNER)
 
 ---
 
-### 👨‍💼 Administrator Capabilities
+### Administrator Capabilities
 
 * Add new site
 * Edit site details (dimensions, type, owner, occupancy)
@@ -35,7 +35,7 @@ The application follows **OOP principles** and implements the **DAO (Data Access
 
 ---
 
-### 🏠 Owner Capabilities
+### Owner Capabilities
 
 * View owned sites
 * Pay maintenance (partial or full payment supported)
@@ -43,7 +43,7 @@ The application follows **OOP principles** and implements the **DAO (Data Access
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 The application is structured into:
 
@@ -86,7 +86,7 @@ The application is structured into:
 
 ---
 
-## 💰 Maintenance Calculation Logic
+## Maintenance Calculation Logic
 
 ```
 If Occupied     → Area × 9
@@ -95,7 +95,7 @@ If Not Occupied → Area × 6
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1️⃣ Create Database
 
