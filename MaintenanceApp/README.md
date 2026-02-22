@@ -1,12 +1,6 @@
 # Layout Maintenance Management System
 
-A role-based **Java console application** for managing residential layout sites, maintenance generation, payment tracking, and site update approvals using **JDBC** and **PostgreSQL**.
-
----
-
-## Overview
-
-The Layout Maintenance Management System is designed to streamline the administration of residential layout properties. The system supports two user roles:
+A role-based **Java console application** for managing residential layout sites, maintenance generation, payment tracking, and site update approvals using **JDBC** and **PostgreSQL**. The system supports two user roles:
 
 * **Administrator** – Manages sites, maintenance generation, payments, and update approvals.
 * **Owner** – Views owned sites, pays maintenance, and submits update requests.
@@ -76,7 +70,7 @@ The application is structured into:
 
 ---
 
-## 🗄️ Database Configuration
+## Database Configuration
 
 ### Database
 
