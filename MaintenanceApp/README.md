@@ -9,7 +9,7 @@ The application follows **OOP principles** and implements the **DAO (Data Access
 
 ---
 
-## Features
+## Features :-
 
 ### Authentication
 
@@ -37,7 +37,7 @@ The application follows **OOP principles** and implements the **DAO (Data Access
 
 ---
 
-## System Architecture
+## System Architecture :-
 
 The application is structured into:
 
@@ -70,7 +70,7 @@ The application is structured into:
 
 ---
 
-## Database Configuration
+## Database Configuration :-
 
 ### Database
 
@@ -89,7 +89,7 @@ If Not Occupied → Area × 6
 
 ---
 
-## Setup Instructions
+## Setup Instructions :-
 
 ### 1️⃣ Create Database
 
