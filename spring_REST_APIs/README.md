@@ -18,7 +18,7 @@ INSERT INTO student (reg_no, roll_no, name, standard, school, gender, percentage
 
 ---
 
-# 🔹 API Endpoints (Example Queries & Bodies)
+# 🔹 API Endpoints
 
 
 ## 1️⃣ Get All Students (GET)
