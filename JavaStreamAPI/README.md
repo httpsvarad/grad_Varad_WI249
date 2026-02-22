@@ -1,6 +1,6 @@
 ## Overview
 
-This program creates a list of employees and performs multiple stream-based operations such as:
+This program creates a list of employees and performs multiple stream-based operations.
 
 ---
 
