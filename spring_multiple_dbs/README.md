@@ -63,7 +63,6 @@ The project uses @Transactional in the service layer to ensure:
 spring.application.name=spring_multiple_dbs
 
 spring.jta.enabled=true
-server.servlet.session.tracking-modes=cookie
 
 #H2 Database
 spring.datasource.primary.jdbc-url=jdbc:h2:mem:h2db
