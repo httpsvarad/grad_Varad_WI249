@@ -20,11 +20,15 @@ public class StdService {
 		return studentRep.findAll();
 	}
 	
-	public Optional<Student> getStudent(Integer reg_no) {
-		if(!studentRep.existsById(reg_no)) {
-			throw new StudentNotFoundException(reg_no);
-		}
-	    return studentRep.findById(reg_no);
+	// public Optional<Student> getStudent(Integer reg_no) {
+	// 	if(!studentRep.existsById(reg_no)) {
+	// 		throw new StudentNotFoundException(reg_no);
+	// 	}
+	//     return studentRep.findById(reg_no);
+	// }
+
+	public Student getStudent(Integer reg_no) {
+	    return studentRep.findById(reg_no).orElseThrow(() -> new StudentNotFoundException(reg_no));
 	}
 
 	public void saveStudent(Student s) {

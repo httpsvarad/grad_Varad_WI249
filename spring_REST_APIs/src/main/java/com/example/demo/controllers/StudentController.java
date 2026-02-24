@@ -28,8 +28,8 @@ public class StudentController {
 	
 	@GetMapping("/students/{reg_no}")
 	public ResponseEntity<Student> getById(@PathVariable Integer reg_no) {
-        Optional<Student> student = stdService.getStudent(reg_no);
-        return ResponseEntity.ok(student.get());
+        Student student = stdService.getStudent(reg_no);
+        return ResponseEntity.ok(student);
     }
 	
 	@PostMapping("/students")
