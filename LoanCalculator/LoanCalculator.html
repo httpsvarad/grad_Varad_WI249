@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Calculator</title>
+
+<script>
+    function setLoanRules() {
+        const loanType = document.getElementById("type").value;
+        const amtInput = document.getElementById("amt");
+        const durationInput = document.getElementById("duration");
+        const interestInput = document.getElementById("interest");
+
+        amtInput.value = "";
+        durationInput.value = "";
+        
+        switch (loanType) {
+            case "home":
+                amtInput.min = 500000;
+                durationInput.max = 30;
+                interestInput.value = 9;
+                break;
+            case "car":
+                amtInput.min = 100000;
+                durationInput.max = 7;
+                interestInput.value = 12;
+                break;
+            case "personal":
+                amtInput.min = 10000;
+                durationInput.max = 5;
+                interestInput.value = 15;
+                break;
+            default:
+                amtInput.min = 0;
+                durationInput.max = 0;
+                interestInput.value = 0;
+        }
+    }
+
+    window.onload = setLoanRules;
+
+    function calculateEMI(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const P = parseFloat(document.getElementById("amt").value);
+        const annualRate = parseFloat(document.getElementById("interest").value);
+        const years = parseFloat(document.getElementById("duration").value);
+        const loanType = document.getElementById("type").value;
+
+        if (name=="") {
+            alert("Name cannot be empty.");
+            return;
+        }
+
+        if(name.length<5){
+            alert("Please enter a valid name.");
+            return;
+        }
+
+        if (!P || !annualRate || !years) {
+            alert("Please fill all fields!");
+            return;
+        }
+
+        let minAmount = 0;
+        let maxDuration = 0;
+
+        switch (loanType) {
+            case "home":
+                minAmount = 500000;
+                maxDuration = 30;
+                break;
+            case "car":
+                minAmount = 100000;
+                maxDuration = 7;
+                break;
+            case "personal":
+                minAmount = 10000;
+                maxDuration = 5;
+                break;
+            default:
+                alert("Invalid loan type!");
+                return;
+        }
+
+        if (P < minAmount) {
+            alert(`Loan amount must be at least ₹${minAmount}`);
+            return;
+        }
+
+        if (years > maxDuration) {
+            alert(`Loan duration cannot exceed ${maxDuration} years`);
+            return;
+        }
+
+        const monthlyRate = annualRate / 12 / 100;
+        const totalMonths = years * 12;
+        const EMI = (P * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+
+        document.getElementById("result").innerText = "EMI: ₹ " + EMI.toFixed(2);
+    }
+    
+</script>
+</head>
+
+<body>
+
+<h1>Loan Calculator</h1>
+<hr>
+<br>
+<form onsubmit="calculateEMI(event)">
+    Applicant Name:
+    <input minlength="5" type="text" id="name" required>
+    <br><br>
+
+    <label for="type">Loan Type:</label>
+    <select id="type" onchange="setLoanRules()">
+        <option value="home">Home</option>
+        <option value="car">Car</option>
+        <option value="personal">Personal</option>
+    </select>
+    <br><br>
+
+    Interest (%):
+    <input type="number" id="interest" disabled>
+    <br><br>
+
+    Amount:
+    <input type="number" id="amt" required>
+    <br><br>
+
+    Duration (Years):
+    <input type="number" id="duration" min="1" required>
+    <br><br>
+
+    <button type="submit">Calculate EMI</button>
+    
+</form>
+
+<h2 id="result">EMI:</h2>
+
+</body>
+</html>
