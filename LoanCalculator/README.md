@@ -1,6 +1,6 @@
 ## Overview
 
-A simple **HTML/JavaScript-based loan calculator** that computes the Equated Monthly Installment (EMI) for different loan types :Home, Car & Personal.
+A simple **HTML/JavaScript-based loan calculator** that computes the Equated Monthly Installment (EMI) for different loan types: Home, Car & Personal.
 
 ## Rules
 
