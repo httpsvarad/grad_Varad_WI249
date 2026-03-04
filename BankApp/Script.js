@@ -1,0 +1,245 @@
+let showPassword = false;
+
+function setActive(element) {
+    var navElems = document.getElementsByClassName("nav-elem");
+
+    document.querySelectorAll(".nav-elem").forEach(elem => {
+        elem.classList.remove("active");
+    });
+
+    element.classList.add("active");
+}
+
+function toggleShowPassword() {
+    showPassword = !showPassword;
+    // console.log(showPassword);
+    const passwordInput = document.getElementById("password");
+    if (passwordInput) {
+        passwordInput.type = showPassword ? "text" : "password";
+    }
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    let email = login.email.value.trim();
+    let password = login.password.value.trim();
+
+    if (email === "" || password === "") {
+        document.getElementById("msg").innerText = "Please enter all fields.";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        document.getElementById("msg").innerText = "Please enter a valid email.";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    document.getElementById("msg").innerText = "LOGIN SUCCESSFUL!";
+    document.getElementById("msg").style.color = "green";
+    document.getElementById("msg").style.marginTop = "5px";
+
+
+}
+
+function handleRegister(event) {
+    event.preventDefault();
+    var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    var passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[._%+-@]).{8,}$/;
+    let email = register.email.value.trim();
+    let password = register.password.value;
+    let confirm_password = register.confirm_password.value;
+
+    if (email === "" || password.trim() === "" || confirm_password.trim() === "") {
+        document.getElementById("msg").innerText = "Please enter all fields.";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        document.getElementById("msg").innerText = "Please enter a valid email.";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    if (!passwordPattern.test(password)) {
+        document.getElementById("msg").innerText = "Invalid password (8+ chars, upper/lower, number & special)";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    if (password !== confirm_password) {
+        document.getElementById("msg").innerText = "Password does not match.";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").style.marginTop = "5px";
+        return;
+    }
+
+    document.getElementById("msg").innerText = "ACCOUNT CREATED!";
+    document.getElementById("msg").style.color = "green";
+    document.getElementById("msg").style.marginTop = "5px";
+
+}
+
+function showHome() {
+
+    var home =
+        `
+        <div class="about-hero">
+            <h1>Welcome to OUR Bank</h1>
+            <p>Simple, secure, and trusted banking for everyone. We're here to help you grow your finances with confidence.</p>
+                <div class="hero-button" onclick="showLogin(); setActive(document.querySelector('.nav-elem:nth-child(4)'))">
+                Access Net Banking →
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat"><h3>1000+</h3><p>Branches Nationwide</p></div>
+                <div class="stat"><h3>7+</h3><p>Cities Covered</p></div>
+                <div class="stat"><h3>100K+</h3><p>Happy Customers</p></div>
+            </div>
+            <img src="assets/hero-banner.jpg" alt="" width="100%" height="auto" style="border-radius: 15px;">
+        `;
+
+    document.getElementById("main-content").innerHTML = home;
+}
+function showAboutUs() {
+    var aboutUs =
+        `
+        <div class="about-hero">
+            <h1>About OUR Bank</h1>
+            <p>We've been serving communities for over two decades with trust, transparency, and commitment to your financial wellbeing.</p>
+            <p>Resize the browser window to see our responsive design in action.</p>
+        </div>
+        <div class="section-title"><h2>Meet Our Team</h2><p>The people behind your banking experience</p></div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar"><img src="assets/profile1.jpg" alt="" width="100%" height="auto" style="border-radius: 50%;"></div>
+                <div class="team-info">
+                    <h2>Rohit Bansal</h2>
+                    <p class="title">Founder</p>
+                    <p>Visionary leader with 20+ years in financial services, shaping the future of banking.</p>
+                  
+                    
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="assets/profile2.jpg" alt="" width="100%" height="auto" style="border-radius: 50%;"></div>
+                <div class="team-info">
+                    <h2>Varad Manegopale</h2>
+                    <p class="title">Director</p>
+                    <p>Crafting exceptional customer experiences through thoughtful design and innovation.</p>
+                
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar"><img src="assets/profile3.jpg" alt="" width="100%" height="auto" style="border-radius: 50%;"></div>
+                <div class="team-info">
+                    <h2>Sia Kumar</h2>
+                    <p class="title">Manager</p>
+                    <p>Bringing clarity and elegance to every product our customers interact with daily.</p>
+                    
+                </div>
+            </div>
+        </div>
+        `;
+    document.getElementById("main-content").innerHTML = aboutUs;
+}
+function showServices() {
+    var services =
+        `
+            <div class="page-title">Our Services</div>
+            <div class="page-sub">Comprehensive financial solutions for every need</div>
+            <div class="services">
+                <div class="service"><div class="svc-icon">🏠</div><div><h4>Home Loans</h4><p>Competitive mortgage rates with quick approvals and easy documentation.</p></div></div>
+                <div class="service"><div class="svc-icon">💼</div><div><h4>Business Banking</h4><p>Corporate accounts and business loans designed to grow with your enterprise.</p></div></div>
+                <div class="service"><div class="svc-icon">📈</div><div><h4>Investments</h4><p>Mutual funds and wealth management to help you achieve long-term goals.</p></div></div>
+                <div class="service"><div class="svc-icon">💳</div><div><h4>Credit Cards</h4><p>Reward-rich cards with cashback and travel miles for every lifestyle.</p></div></div>
+                <div class="service"><div class="svc-icon">🛡️</div><div><h4>Insurance</h4><p>Life, health, and property insurance bundled seamlessly with your banking.</p></div></div>
+                <div class="service"><div class="svc-icon">📱</div><div><h4>Mobile Banking</h4><p>Manage your finances anytime, anywhere with our secure mobile app.</p></div></div>
+            </div>
+        `;
+    document.getElementById("main-content").innerHTML = services;
+}
+
+function showRegister() {
+    var signUp =
+        `
+            <div class="login-wrap">
+                <div class="login-box">
+                    <div class="login-header">
+                        <div class="login-logo">O</div>
+                        <h3>Get Started</h3>
+                        <p>Register to enable Net Banking</p>
+                    </div>
+                    <form name="register" onSubmit=handleRegister(event)>
+                    <div class="field"><label>Email ID</label><input id="email" placeholder="Enter your email ID"></div>
+                    <div class="field"><label>Set Password <span id="toggle" onClick="toggleShowPassword()">👀</span> </label><input id="password" type="password" placeholder="Enter your password"></div>
+                    <div class="field"><label>Confirm Password</label><input id="confirm_password" type="password" placeholder="Re-Enter your password"></div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                    <div onClick="showLogin()" class="login-footer"><a>Already have an account?</a> &nbsp;·&nbsp; <a>Login Now</a></div>
+                </div>
+                <div id="msg"></div>
+            </div>
+        `;
+    document.getElementById("main-content").innerHTML = signUp;
+}
+
+function showLogin() {
+    var netBanking =
+        `
+            <div class="login-wrap">
+                <div class="login-box">
+                    <div class="login-header">
+                        <div class="login-logo">O</div>
+                        <h3>Login</h3>
+                        <p>Sign in to access your accounts securely</p>
+                    </div>
+                    <form name="login" onSubmit="handleLogin(event)">
+                    <div class="field"><label>Email ID</label><input id="email" placeholder="Enter your email ID"></div>
+                    <div class="field"><label>Password <span id="toggle" onClick="toggleShowPassword()">👀</span> </label><input id="password" type="password" placeholder="Enter your password"></div>
+                    <button type="submit" class="btn">Login to Account</button>
+                    </form>
+                    <div onClick="showRegister()" class="login-footer"><a>New to OUR Bank?</a> &nbsp;·&nbsp; <a>Register Now</a></div>
+                </div>
+                <div id="msg"></div>
+            </div>
+            
+        `;
+    document.getElementById("main-content").innerHTML = netBanking;
+}
+
+function showContactUs() {
+    var contactUs =
+        `
+            <div class="page-title">Contact Us</div>
+            <div class="page-sub">We're here to help - reach out anytime</div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Our support team is available Monday to Saturday, 9 AM to 6 PM.</p>
+                    <div class="contact-row"><div class="c-icon">📍</div><div><strong>Address</strong><span>Bandra, Mumbai 400001</span></div></div>
+                    <div class="contact-row"><div class="c-icon">📞</div><div><strong>Phone</strong><span>1800-000-1234 (Toll Free)</span></div></div>
+                    <div class="contact-row"><div class="c-icon">✉️</div><div><strong>Email</strong><span>support@ourbank.com</span></div></div>
+                    <div class="contact-row"><div class="c-icon">🕐</div><div><strong>Hours</strong><span>Mon–Sat, 9 AM to 6 PM</span></div></div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <div class="field"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+                    <div class="field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+                    <div class="field"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
+                    <button class="btn-sm">Send Message →</button>
+                </div>
+            </div>
+        `;
+    document.getElementById("main-content").innerHTML = contactUs;
+}
+
+window.onload = showHome;
