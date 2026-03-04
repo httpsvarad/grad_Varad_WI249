@@ -1,5 +1,12 @@
 let showPassword = false;
 
+function setBottomActive(element) {
+    document.querySelectorAll(".bottom-nav-item").forEach(elem => {
+        elem.classList.remove("active");
+    });
+    element.classList.add("active");
+}
+
 function setActive(element) {
     var navElems = document.getElementsByClassName("nav-elem");
 
@@ -155,15 +162,72 @@ function showServices() {
     var services =
         `
             <div class="page-title">Our Services</div>
-            <div class="page-sub">Comprehensive financial solutions for every need</div>
-            <div class="services">
-                <div class="service"><div class="svc-icon">🏠</div><div><h4>Home Loans</h4><p>Competitive mortgage rates with quick approvals and easy documentation.</p></div></div>
-                <div class="service"><div class="svc-icon">💼</div><div><h4>Business Banking</h4><p>Corporate accounts and business loans designed to grow with your enterprise.</p></div></div>
-                <div class="service"><div class="svc-icon">📈</div><div><h4>Investments</h4><p>Mutual funds and wealth management to help you achieve long-term goals.</p></div></div>
-                <div class="service"><div class="svc-icon">💳</div><div><h4>Credit Cards</h4><p>Reward-rich cards with cashback and travel miles for every lifestyle.</p></div></div>
-                <div class="service"><div class="svc-icon">🛡️</div><div><h4>Insurance</h4><p>Life, health, and property insurance bundled seamlessly with your banking.</p></div></div>
-                <div class="service"><div class="svc-icon">📱</div><div><h4>Mobile Banking</h4><p>Manage your finances anytime, anywhere with our secure mobile app.</p></div></div>
+        <div class="page-sub">Comprehensive financial solutions for every need</div>
+        <div class="container-fluid px-0">
+            <div class="row g-3">
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">🏠</div>
+                        <div>
+                            <h4>Home Loans</h4>
+                            <p>Competitive mortgage rates with quick approvals and easy documentation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">💼</div>
+                        <div>
+                            <h4>Business Banking</h4>
+                            <p>Corporate accounts and business loans designed to grow with your enterprise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">📈</div>
+                        <div>
+                            <h4>Investments</h4>
+                            <p>Mutual funds and wealth management to help you achieve long-term goals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">💳</div>
+                        <div>
+                            <h4>Credit Cards</h4>
+                            <p>Reward-rich cards with cashback and travel miles for every lifestyle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">🛡️</div>
+                        <div>
+                            <h4>Insurance</h4>
+                            <p>Life, health, and property insurance bundled seamlessly with your banking.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="service">
+                        <div class="svc-icon">📱</div>
+                        <div>
+                            <h4>Mobile Banking</h4>
+                            <p>Manage your finances anytime, anywhere with our secure mobile app.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
         `;
     document.getElementById("main-content").innerHTML = services;
 }
@@ -182,7 +246,7 @@ function showRegister() {
                     <div class="field"><label>Email ID</label><input id="email" placeholder="Enter your email ID"></div>
                     <div class="field"><label>Set Password <span id="toggle" onClick="toggleShowPassword()">👀</span> </label><input id="password" type="password" placeholder="Enter your password"></div>
                     <div class="field"><label>Confirm Password</label><input id="confirm_password" type="password" placeholder="Re-Enter your password"></div>
-                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="submit" class="frombtn">Sign Up</button>
                     </form>
                     <div onClick="showLogin()" class="login-footer"><a>Already have an account?</a> &nbsp;·&nbsp; <a>Login Now</a></div>
                 </div>
@@ -205,7 +269,7 @@ function showLogin() {
                     <form name="login" onSubmit="handleLogin(event)">
                     <div class="field"><label>Email ID</label><input id="email" placeholder="Enter your email ID"></div>
                     <div class="field"><label>Password <span id="toggle" onClick="toggleShowPassword()">👀</span> </label><input id="password" type="password" placeholder="Enter your password"></div>
-                    <button type="submit" class="btn">Login to Account</button>
+                    <button type="submit" class="frombtn">Login to Account</button>
                     </form>
                     <div onClick="showRegister()" class="login-footer"><a>New to OUR Bank?</a> &nbsp;·&nbsp; <a>Register Now</a></div>
                 </div>
@@ -219,25 +283,76 @@ function showLogin() {
 function showContactUs() {
     var contactUs =
         `
-            <div class="page-title">Contact Us</div>
-            <div class="page-sub">We're here to help - reach out anytime</div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Our support team is available Monday to Saturday, 9 AM to 6 PM.</p>
-                    <div class="contact-row"><div class="c-icon">📍</div><div><strong>Address</strong><span>Bandra, Mumbai 400001</span></div></div>
-                    <div class="contact-row"><div class="c-icon">📞</div><div><strong>Phone</strong><span>1800-000-1234 (Toll Free)</span></div></div>
-                    <div class="contact-row"><div class="c-icon">✉️</div><div><strong>Email</strong><span>support@ourbank.com</span></div></div>
-                    <div class="contact-row"><div class="c-icon">🕐</div><div><strong>Hours</strong><span>Mon–Sat, 9 AM to 6 PM</span></div></div>
+        <div class="page-title">Contact Us</div>
+        <div class="container-fluid px-0 pt-3">
+            <div class="row g-4">
+
+                <!-- Contact Info -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Our support team is available Monday to Saturday, 9 AM to 6 PM.</p>
+
+                        <div class="contact-row">
+                            <div class="c-icon">📍</div>
+                            <div>
+                                <strong>Address</strong>
+                                <span>Bandra, Mumbai 400001</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-row">
+                            <div class="c-icon">📞</div>
+                            <div>
+                                <strong>Phone</strong>
+                                <span>1800-000-1234 (Toll Free)</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-row">
+                            <div class="c-icon">✉️</div>
+                            <div>
+                                <strong>Email</strong>
+                                <span>support@ourbank.com</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-row">
+                            <div class="c-icon">🕐</div>
+                            <div>
+                                <strong>Hours</strong>
+                                <span>Mon–Sat, 9 AM to 6 PM</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <div class="field"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
-                    <div class="field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-                    <div class="field"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
-                    <button class="btn-sm">Send Message →</button>
+
+                <!-- Contact Form -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-form">
+                        <h3>Send a Message</h3>
+
+                        <div class="field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name">
+                        </div>
+
+                        <div class="field">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com">
+                        </div>
+
+                        <div class="field">
+                            <label>Message</label>
+                            <textarea placeholder="How can we help you?"></textarea>
+                        </div>
+
+                        <button class="btn-sm">Send Message →</button>
+                    </div>
                 </div>
+
             </div>
+        </div>
         `;
     document.getElementById("main-content").innerHTML = contactUs;
 }
