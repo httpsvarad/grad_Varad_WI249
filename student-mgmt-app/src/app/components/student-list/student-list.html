@@ -1,0 +1,25 @@
+<div class="admin">
+    <h2>All Students</h2>
+
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>RegNo</th>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Standard</th>
+            <th>School</th>
+        </tr>
+
+        <tr *ngFor="let s of students">
+            <td>{{s.regNo}}</td>
+            <td>{{s.rollNo}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.standard}}</td>
+            <td>{{s.school}}</td>
+        </tr>
+
+    </table>
+
+</div>

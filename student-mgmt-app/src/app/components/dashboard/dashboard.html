@@ -1,0 +1,42 @@
+<div class="admin">
+    <h2>Add Student</h2>
+
+    <form (submit)="saveStudent($event)">
+        <input #regNo type="text" placeholder="Reg No">
+        <input #rollNo type="number" placeholder="Roll No">
+        <input #name type="text" placeholder="Name">
+        <input #standard type="number" placeholder="Standard">
+        <input #school type="text" placeholder="School">
+
+        <button type="submit">Save</button>
+    </form>
+
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>RegNo</th>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Standard</th>
+            <th>School</th>
+            <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let s of students; let i = index">
+            <td>{{s.regNo}}</td>
+            <td>{{s.rollNo}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.standard}}</td>
+            <td>{{s.school}}</td>
+
+            <td>
+                <div class="action">
+                    <button (click)="editStudent(i)">Edit</button>
+                    <button (click)="deleteStudent(i)">Delete</button>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</div>

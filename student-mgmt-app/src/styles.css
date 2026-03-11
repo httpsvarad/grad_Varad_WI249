@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+h1 {
+    color: blueviolet;
+    text-align: center;
+}
+
+h2 {
+    color: tomato;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table td, table th {
+  padding: 10px;
+}
+
+.action {
+    display: flex;
+    gap: 8px;
+}
+
+.admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
