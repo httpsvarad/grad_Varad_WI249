@@ -1,0 +1,42 @@
+<div *ngIf="message" class="toast" [class.error]="isError">{{ message }}</div>
+
+<div class="controls">
+    <input type="text" placeholder="Search by school" [(ngModel)]="schoolSearch" (keyup.enter)="searchSchool()" />
+    <button (click)="searchSchool()">Search</button>
+    <button (click)="showPass()">Pass</button>
+    <button (click)="showFail()">Fail</button>
+    <button (click)="loadStudents()">All</button>
+</div>
+<div class="table-wrapper">
+
+
+    <table class="st-list">
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Standard</th>
+                <th>School</th>
+                <th>Gender</th>
+                <th>Percentage</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of students">
+                <td>{{ s.reg_no }}</td>
+                <td>{{ s.roll_no }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.standard }}</td>
+                <td>{{ s.school }}</td>
+                <td>{{ s.gender }}</td>
+                <td [style.color]="s.percentage >= 40 ? 'green' : 'red'">{{ s.percentage }}%</td>
+                <td><button class="btn-del" (click)="deleteStudent(s.reg_no)">Delete</button></td>
+            </tr>
+            <tr *ngIf="students.length === 0">
+                <td colspan="8" style="text-align:center;color:#aaa;padding:1.5rem">No students found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

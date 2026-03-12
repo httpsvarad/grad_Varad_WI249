@@ -1,0 +1,35 @@
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <h4>Count by School</h4>
+        <div class="row">
+            <input type="text" placeholder="School name" [(ngModel)]="schoolName" />
+            <button (click)="getSchoolCount()">Get Count</button>
+        </div>
+        <div class="result" *ngIf="schoolCount !== null">Count: <strong>{{ schoolCount }}</strong></div>
+    </div>
+
+    <div class="stat-card">
+        <h4>Count by Standard</h4>
+        <div class="row">
+            <input type="number" placeholder="Standard" [(ngModel)]="stdNumber" />
+            <button (click)="getStdCount()">Get Count</button>
+        </div>
+        <div class="result" *ngIf="stdCount !== null">Count: <strong>{{ stdCount }}</strong></div>
+    </div>
+
+    <div class="stat-card">
+        <h4>Strength</h4>
+        <div class="row">
+            <select [(ngModel)]="strengthGender">
+                <option [value]="Gender.MALE">Male</option>
+                <option [value]="Gender.FEMALE">Female</option>
+                <option [value]="Gender.OTHER">Other</option>
+            </select>
+            <input type="number" placeholder="Standard" [(ngModel)]="strengthStd" />
+            <button (click)="getStrength()">Get</button>
+        </div>
+        <div class="result" *ngIf="strengthCount !== null">Strength: <strong>{{ strengthCount }}</strong></div>
+    </div>
+
+</div>

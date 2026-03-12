@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 14px;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.tabs button {
+    padding: 7px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #555;
+}
+
+.tabs button.active {
+    background: #222;
+    color: white;
+    border-radius: 4px 4px 0 0;
+}
+
+
+.form-card,
+.stat-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+input,
+select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #555;
+}
+
+
+button {
+    padding: 7px 16px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    background: #eee;
+}
+
+.btn-primary {
+    background: #222;
+    color: white;
+    border-color: #222;
+}
+
+.btn-primary:hover {
+    background: #444;
+}
+
+.btn-del {
+    background: #c0392b;
+    color: white;
+    border-color: #c0392b;
+    padding: 4px 10px;
+}
+
+.btn-del:hover {
+    background: #e74c3c;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: #222;
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover td {
+    background: #fafafa;
+}
+
+
+.controls {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.controls input {
+    width: auto;
+    flex: 1;
+    min-width: 160px;
+}
+
+
+.inline-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.inline-row input,
+.inline-row select {
+    width: auto;
+    flex: 1;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card h4 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.8rem;
+}
+
+.row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.row input,
+.row select {
+    flex: 1;
+    min-width: 80px;
+    width: auto;
+}
+
+.result {
+    margin-top: 0.7rem;
+    padding: 7px 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    font-size: 0.88rem;
+}
+
+
+.toast {
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #27ae60;
+    color: white;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.toast.error {
+    background: #c0392b;
+}
+
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.2rem 0;
+}
+
+.pass {
+    color: green;
+}
+
+.fail {
+    color: red;
+}
+
+h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+
+.navbar {
+    background: #1f2937;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.brand span {
+    color: #3b82f6;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.st-list {
+    min-width: 900px;
+    border-collapse: collapse;
+}

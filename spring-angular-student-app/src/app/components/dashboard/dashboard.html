@@ -1,0 +1,76 @@
+<div class="dashboard">
+    <nav class="tabs">
+        <button [class.active]="activeTab==='list'" (click)="setTab('list')">Student List</button>
+        <button [class.active]="activeTab==='add'" (click)="setTab('add')">Add Student</button>
+        <button [class.active]="activeTab==='edit'" (click)="setTab('edit')">Edit</button>
+        <button [class.active]="activeTab==='stats'" (click)="setTab('stats')">Stats</button>
+    </nav>
+
+    <div class="toast" *ngIf="message" [class.error]="isError">{{ message }}</div>
+
+    <!-- LIST TAB -->
+    <div [hidden]="activeTab !== 'list'">
+        <app-student-list></app-student-list>
+    </div>
+
+    <!-- ADD TAB -->
+    <div [hidden]="activeTab !== 'add'" class="form-card">
+        <h3>Add New Student</h3>
+        <div class="form-grid">
+            <label>Reg No<input type="number" [(ngModel)]="student.reg_no" /></label>
+            <label>Roll No<input type="number" [(ngModel)]="student.roll_no" /></label>
+            <label>Name<input type="text" [(ngModel)]="student.name" /></label>
+            <label>Standard<input type="number" [(ngModel)]="student.standard" /></label>
+            <label>School<input type="text" [(ngModel)]="student.school" /></label>
+            <label>Gender
+                <select [(ngModel)]="student.gender">
+                    <option *ngFor="let g of [Gender.MALE, Gender.FEMALE, Gender.OTHER]" [value]="g">{{ g }}</option>
+                </select>
+            </label>
+            <label>Percentage<input type="number" step="0.01" [(ngModel)]="student.percentage" /></label>
+        </div>
+        <button class="btn-primary" (click)="onAdd()">Add Student</button>
+    </div>
+
+    <!-- EDIT -->
+    <div [hidden]="activeTab !== 'edit'" class="form-card">
+
+        <!-- Full Update -->
+        <h3>Update</h3>
+        <div class="inline-row">
+            <input type="number" placeholder="Reg No" [(ngModel)]="editRegNo" />
+            <button (click)="loadForEdit()">Load</button>
+        </div>
+        <div class="form-grid" *ngIf="editStudent.name">
+            <label>Roll No<input type="number" [(ngModel)]="editStudent.roll_no" /></label>
+            <label>Name<input type="text" [(ngModel)]="editStudent.name" /></label>
+            <label>Standard<input type="number" [(ngModel)]="editStudent.standard" /></label>
+            <label>School<input type="text" [(ngModel)]="editStudent.school" /></label>
+            <label>Gender
+                <select [(ngModel)]="editStudent.gender">
+                    <option *ngFor="let g of [Gender.MALE, Gender.FEMALE, Gender.OTHER]" [value]="g">{{ g }}</option>
+                </select>
+            </label>
+            <label>Percentage<input type="number" step="0.01" [(ngModel)]="editStudent.percentage" /></label>
+        </div>
+        <button class="btn-primary" *ngIf="editStudent.name" (click)="onUpdate()">Update</button>
+
+        <hr />
+
+        <!-- Partial Update -->
+        <!-- <h3>Partial Update (PATCH)</h3>
+        <div class="inline-row">
+            <input type="number" placeholder="Reg No" [(ngModel)]="patchRegNo" />
+            <select [(ngModel)]="patchField">
+                <option *ngFor="let f of patchFields" [value]="f">{{ f }}</option>
+            </select>
+            <input type="text" placeholder="New value" [(ngModel)]="patchValue" />
+            <button (click)="onPatch()">Patch</button>
+        </div> -->
+    </div>
+
+        <!-- STATS TAB -->
+        <div [hidden]="activeTab !== 'stats'">
+            <app-stats-panel></app-stats-panel>
+        </div>
+    </div>
